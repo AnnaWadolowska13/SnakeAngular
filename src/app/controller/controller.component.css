@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 6px 6px 0;
+  display: inline-block;
+  padding: 6px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.leftbtn {
+  margin-right: 15px;
+}
+.rightbtn {
+  margin-left: 15px;
+}
+button {
+  border-radius: 55%;
+  width: 100px;
+  height: 50px;
+}
+.yellow {
+  background-color: rgb(241, 241, 30);
+}
+.gameNav button {
+  border-radius: 15px;
+  text-align: center;
+  padding: 11px;
+  width: auto;
+  height: auto;
+}

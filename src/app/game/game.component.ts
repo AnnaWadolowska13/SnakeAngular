@@ -49,16 +49,11 @@ export class GameComponent implements OnInit {
     } else {
       this.router.navigate(["intro"]);
     }
-    
-
   }
-  
   ngOnInit(): void {
 
   }
 
-  
-  
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
   switch (event.keyCode) {
@@ -74,6 +69,32 @@ export class GameComponent implements OnInit {
     case 40:
       this.onDownButtonPressed();
       break;
+    }
+  }
+
+  public controllerClick(buttonType:string):void {
+    switch (buttonType) {
+      case "start":
+        this.onStartButtonPressed();
+        break;
+      case "stop":
+        this.onStopButtonPressed();
+        break;
+      case "reset":
+        this.onResetButtonPressed();
+        break;
+      case "up":
+        this.onUpButtonPressed();
+        break;
+      case "left":
+        this.onLeftButtonPressed();
+        break;
+      case "right":
+        this.onRightButtonPressed();
+        break;
+      case "down":
+        this.onDownButtonPressed();
+        break;
     }
   }
 

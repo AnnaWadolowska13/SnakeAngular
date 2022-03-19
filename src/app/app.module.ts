@@ -10,6 +10,7 @@ import { FilterPipe } from './filter.pipe';
 import { NgxSnakeModule } from 'ngx-snake';
 import { IntroComponent } from './intro/intro.component';
 import { GameInfoComponent } from './game-info/game-info.component';
+import { ControllerComponent } from './controller/controller.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GameInfoComponent } from './game-info/game-info.component';
     GameComponent,
     FilterPipe,
     IntroComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    ControllerComponent
   ],
   imports: [
     BrowserModule,
