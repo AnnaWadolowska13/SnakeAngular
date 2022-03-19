@@ -1,0 +1,80 @@
+
+<div class="container bg-violet">
+    <div class="hello">
+        Welcome in Snake 
+    </div>
+    <div class="container_flex">
+        <div class="col-3">
+            <p>
+                
+                <br/><br /><br />
+                <b>
+                    Player:
+                </b>
+                {{user.name}}
+            </p>
+            <p>
+                <b>
+                    Game status:
+                </b>
+                {{gameStatus}}
+            </p>
+
+            <p>
+                <b>
+                    Score:
+                </b>
+                {{score}}
+            </p>
+            <p>
+                <b>
+                    Game time:
+                </b>
+                {{timer}}
+            </p>
+
+        </div>
+        <div class="col-3">
+            <ngx-snake #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>
+        </div>
+        <div class="col-3">
+            <button (click)="onStartButtonPressed()">Start</button>
+            <button (click)="onStopButtonPressed()">Stop</button>
+            <button (click)="onResetButtonPressed()">Reset</button> <br /><br />    
+            <div class="gameNav">
+                <button (click)="onUpButtonPressed()"> <i class="arrow up"></i></button><br />
+                <button (click)="onLeftButtonPressed()" class="leftbtn"> <i class="arrow left"></i> </button>
+                <button (click)="onRightButtonPressed()" class="rightbtn"> <i class="arrow right"></i> </button><br />
+                <button (click)="onDownButtonPressed()"> <i class="arrow down"></i></button> <br /><br />
+            </div><br /><br />  
+            <button (click)="onClickLogOut()" class="yellow">Log Out</button>
+        </div>
+    </div>
+    <div>
+        <button *ngIf="!displayMoves" (click)="onClickDisplayMoves()"> Show list</button>
+        <button *ngIf="displayMoves" (click)="onClickDisplayMoves()"> Hide list</button>
+    </div>
+    <div class="moves" *ngIf="displayMoves">
+        <h1>Moves List</h1>
+        <div>
+            <span>Filters:</span>
+            <select [(ngModel)]="selectedType">
+                <option value="all">Show all</option>
+                <option *ngFor="let type of movesTypes" [value]="type"> {{type}}</option>
+            </select>
+            <select [(ngModel)]="sortType">
+                <option value="old">from the oldest</option>
+                <option value="young">from the youngest</option>
+    
+            </select>
+        </div>
+        <ul>
+            <li *ngFor="let move of movesList | filter: selectedType:sortType: movesList.length">
+                {{move.move}} - time: {{move.time}}
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+

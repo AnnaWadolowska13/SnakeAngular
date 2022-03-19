@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="box">
+        <h1>Let's play snake! </h1>
+    </div>
+    <div class="box">
+        <form #userForm="ngForm" (submit)="onClickLogIn(userForm.form)">
+            <label for="name">
+                Enter your name <br />
+                <input type="text" ngModel name="userName" #nameInput="ngModel" required minlength="3"
+                    class="ng-invalid">
+            </label> <br />
+            <p *ngIf="!nameInput.valid && nameInput.touched && nameInput.value != ''">
+                Incorrect name
+            </p>
+            <label for="email">
+                Enter your e-mail <br />
+                <input type="text" ngModel name="userEmail" #emailInput="ngModel" required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="ng-untouched ng-pristine ng-invalid">
+            </label>
+            <p *ngIf="!emailInput.valid && emailInput.touched && emailInput.value != ''">
+                Incorrect e-mail
+            </p>
+            <br />
+            <button [disabled]="!userForm.valid">Go to game</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.container {
+  color: rgb(7, 20, 10);
+  display: flex;
+  font-size: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+.box {
+  text-align: center;
+}
+.box label {
+  font-size: 20px;
+}
+.box button {
+  background-color: rgb(241, 241, 30);
+  border-radius: 55%;
+  width: 100px;
+  height: 50px;
+}
+input.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
+p {
+  margin-top: 5px;
+  font-size: 15px;
+}
+input.ng-invalid.ng-valid {
+  border: none;
+}
