@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StorageService } from '../storage.service';
 
 
 export interface User{
@@ -13,18 +11,17 @@ export interface User{
   templateUrl: './log-form.component.html',
   styleUrls: ['./log-form.component.css']
 })
-export class LogFormComponent implements OnInit {
-  constructor(private storage: StorageService, private router:Router) {}
-
-  ngOnInit(): void {
-  }
+export class LogFormComponent{
+  constructor() {}
+  @Output() public user = new EventEmitter<User>();
   public onClickLogIn(form: FormGroup): void{
-    const user:User = {
+    const logInUser:User = {
       name: form.value.userName,
       email: form.value.userEmail
     }
-    this.storage.setUser(user);
-    this.router.navigate(["game"])
+    this.user.emit(logInUser);
+    // this.storage.setUser(user);
+    // this.router.navigate(["game"]);
   }
 
 }

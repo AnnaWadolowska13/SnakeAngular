@@ -21,4 +21,8 @@ export class StorageService {
     this.user.name = "";
     this.user.email = "";
   }
+  isUserLogin() {
+    if (this.user.name !== "") return true;
+    return false
+  }
 }

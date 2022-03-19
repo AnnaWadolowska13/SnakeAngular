@@ -5,34 +5,7 @@
     </div>
     <div class="container_flex">
         <div class="col-3">
-            <p>
-                
-                <br/><br /><br />
-                <b>
-                    Player:
-                </b>
-                {{user.name}}
-            </p>
-            <p>
-                <b>
-                    Game status:
-                </b>
-                {{gameStatus}}
-            </p>
-
-            <p>
-                <b>
-                    Score:
-                </b>
-                {{score}}
-            </p>
-            <p>
-                <b>
-                    Game time:
-                </b>
-                {{timer}}
-            </p>
-
+            <app-game-info [info]='userInfo'></app-game-info>
         </div>
         <div class="col-3">
             <ngx-snake #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>

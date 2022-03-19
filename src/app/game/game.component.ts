@@ -9,30 +9,55 @@ export interface Move{
   time: number,
 }
 
+export interface UserInfo{
+    user: {
+      name: string,
+      email:string
+    }
+    gameStatus: string,
+    score: number,
+    timer: number
+}
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
+  
 export class GameComponent implements OnInit {
   @ViewChild(NgxSnakeComponent) public _snake!: NgxSnakeComponent;
-  public user;
-  public score: number = 0;
-  public timer: number = 0;
   public timerInterval!: any;
-  public gameStatus: string = 'ready';
   public movesList: Array<Move> = [];
   public movesTypes: Array<string> = ['right', 'left', 'up', 'down', 'score', 'game ended', 'game paused', 'game started'];
   public selectedType: string = "all";
   public sortType: string = "old";
   public displayMoves: boolean = false;
 
-  constructor(private storage: StorageService, private router:Router) {
-    this.user = this.storage.readUser();
+  public userInfo: UserInfo = {
+    user: {
+      name: "",
+      email: ""
+    },
+    gameStatus: 'ready',
+    score: 0,
+    timer: 0
+  }
+  constructor(private storage: StorageService, private router: Router) {
+    if (this.storage.isUserLogin()) {
+      this.userInfo.user = this.storage.readUser();
+    } else {
+      this.router.navigate(["intro"]);
+    }
+    
+
   }
   
   ngOnInit(): void {
+
   }
+
+  
   
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -53,35 +78,34 @@ export class GameComponent implements OnInit {
   }
 
   public foodEaten() {
-    this.score++;
+    this.userInfo.score++;
     this.movesList.push({
-      move: "score: "+ this.score,
-      time: this.timer,
+      move: "score: "+ this.userInfo.score,
+      time: this.userInfo.timer,
     })
-    // console.log(this.score)
   }
   public onStartButtonPressed() {
-    if (this.gameStatus !== "paused") {
+    if (this.userInfo.gameStatus !== "paused") {
       this.onResetButtonPressed();
     }
-    this.gameStatus = "started";
+    this.userInfo.gameStatus = "started";
     this.timerInterval = setInterval(() => {
-      this.timer++;
+      this.userInfo.timer++;
     }, 1000);
     this.movesList.push({
       move: "game started",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     this._snake.actionStart();
   }
   public onStopButtonPressed() {
-    if (this.gameStatus === "started") {
+    if (this.userInfo.gameStatus === "started") {
       clearInterval(this.timerInterval);
-      this.gameStatus = "paused";
+      this.userInfo.gameStatus = "paused";
       this._snake.actionStop();
       this.movesList.push({
         move: "game paused",
-        time: this.timer,
+        time: this.userInfo.timer,
       })
     }
 
@@ -89,41 +113,41 @@ export class GameComponent implements OnInit {
   public onResetButtonPressed() {
     clearInterval(this.timerInterval);
     this.movesList = [];
-    this.gameStatus = "ready";
+    this.userInfo.gameStatus = "ready";
     this.resetCounters();
     this._snake.actionReset();
   }
   public onLeftButtonPressed() {
     this.movesList.push({
       move: "left",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     this._snake.actionLeft();
   }
   public onUpButtonPressed() {
     this.movesList.push({
       move: "up",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     this._snake.actionUp();
   }
   public onRightButtonPressed() {
     this.movesList.push({
       move: "right",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     this._snake.actionRight();
   }
   public onDownButtonPressed() {
     this.movesList.push({
       move: "down",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     this._snake.actionDown();
   }
   private resetCounters() {
-    this.score = 0;
-    this.timer = 0;
+    this.userInfo.score = 0;
+    this.userInfo.timer = 0;
   }
 
   public onClickLogOut() {
@@ -134,10 +158,10 @@ export class GameComponent implements OnInit {
   public gameOver() {
     this.movesList.push({
       move: "game ended",
-      time: this.timer,
+      time: this.userInfo.timer,
     })
     clearInterval(this.timerInterval);
-    this.gameStatus = "end";
+    this.userInfo.gameStatus = "end";
   }
   public onClickDisplayMoves() {
     this.displayMoves = !this.displayMoves;
