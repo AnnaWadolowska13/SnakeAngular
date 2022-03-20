@@ -12,6 +12,7 @@
         </div>
         <div class="col-3"> 
                 <app-controller (buttonClickType)="controllerClick($event)"></app-controller>
+                <button (click)="onClickHighScore()">Go to High Scores</button>
             <button (click)="onClickLogOut()" class="yellow">Log Out</button>
         </div>
     </div>

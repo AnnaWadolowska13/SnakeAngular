@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSnakeComponent } from 'ngx-snake';
-import { User } from '../log-form/log-form.component';
 import { StorageService } from '../storage.service';
 
 export interface Move{
@@ -43,12 +42,15 @@ export class GameComponent implements OnInit {
     score: 0,
     timer: 0
   }
-  constructor(private storage: StorageService, private router: Router) {
-    if (this.storage.isUserLogin()) {
-      this.userInfo.user = this.storage.readUser();
+
+  constructor(private _storage: StorageService, private router: Router) {
+    if (this._storage.isUserLogin()) {
+      this.userInfo.user = this._storage.readUser();
     } else {
       this.router.navigate(["intro"]);
     }
+
+    // console.log("data", this.data);
   }
   ngOnInit(): void {
 
@@ -172,7 +174,7 @@ export class GameComponent implements OnInit {
   }
 
   public onClickLogOut() {
-    this.storage.resetUser();
+    this._storage.resetUser();
     this.router.navigate(["logForm"]);
 
   }
@@ -186,5 +188,8 @@ export class GameComponent implements OnInit {
   }
   public onClickDisplayMoves() {
     this.displayMoves = !this.displayMoves;
+  }
+  public onClickHighScore() {
+    this.router.navigate(["highscores"]);
   }
 }

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from "@angular/forms"
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http"
 
 import { AppComponent } from './app.component';
 import { LogFormComponent } from './log-form/log-form.component';
@@ -11,6 +12,7 @@ import { NgxSnakeModule } from 'ngx-snake';
 import { IntroComponent } from './intro/intro.component';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { ControllerComponent } from './controller/controller.component';
+import { HighscoresComponent } from './highscores/highscores.component';
 
 @NgModule({
   declarations: [
@@ -20,15 +22,18 @@ import { ControllerComponent } from './controller/controller.component';
     FilterPipe,
     IntroComponent,
     GameInfoComponent,
-    ControllerComponent
+    ControllerComponent,
+    HighscoresComponent
   ],
   imports: [
     BrowserModule,
     NgxSnakeModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: "Intro", component: IntroComponent },
       { path: "game", component: GameComponent },
+      { path: "highscores", component: HighscoresComponent },
       { path: "**", redirectTo: "Intro" },
       
     ]),

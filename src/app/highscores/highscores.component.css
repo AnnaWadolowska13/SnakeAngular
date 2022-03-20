@@ -1,0 +1,12 @@
+.container {
+  width: 30%;
+  margin: 0 auto;
+}
+.button {
+  border-radius: 15px;
+  text-align: center;
+  padding: 11px;
+  width: auto;
+  height: auto;
+  background-color: rgb(241, 241, 30);
+}
