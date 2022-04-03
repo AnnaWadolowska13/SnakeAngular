@@ -12,7 +12,7 @@ export interface Move{
 export interface UserInfo{
     user: {
       name: string,
-      email:string
+      token:string
     }
     gameStatus: string,
     score: number,
@@ -40,7 +40,7 @@ export class GameComponent implements OnInit {
   public userInfo: UserInfo = {
     user: {
       name: "",
-      email: ""
+      token: ""
     },
     gameStatus: 'ready',
     score: 0,

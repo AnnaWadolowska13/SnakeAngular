@@ -7,19 +7,19 @@ import { User } from './log-form/log-form.component';
 export class StorageService {
   private user: User = {
     name: "",
-    email: "" 
+    token: "" 
   };
 
   readUser() {
     return this.user;
   }
-  setUser({name, email}: User) {
+  setUser({name, token}: User) {
     this.user.name = name;
-    this.user.email = email;
+    this.user.token = token;
   }
   resetUser(){
     this.user.name = "";
-    this.user.email = "";
+    this.user.token = "";
   }
   isUserLogin() {
     if (this.user.name !== "") return true;

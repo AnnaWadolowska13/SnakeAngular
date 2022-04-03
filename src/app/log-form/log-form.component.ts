@@ -1,10 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { TokenVerifyService } from '../token-verify.service';
 
 
 export interface User{
   name: string,
-  email: string
+  token: string
+}
+interface Result{
+  success: boolean
 }
 @Component({
   selector: 'app-log-form',
@@ -12,16 +16,27 @@ export interface User{
   styleUrls: ['./log-form.component.css']
 })
 export class LogFormComponent{
-  constructor() {}
+  public badTokenError = false;
+  constructor(private _tokenVerify: TokenVerifyService) {
+  }
   @Output() public user = new EventEmitter<User>();
   public onClickLogIn(form: FormGroup): void{
-    const logInUser:User = {
-      name: form.value.userName,
-      email: form.value.userEmail
-    }
-    this.user.emit(logInUser);
-    // this.storage.setUser(user);
-    // this.router.navigate(["game"]);
+    this._tokenVerify.checkToken(form.value.gameToken).subscribe((result:any) => {
+      if (result.success) {
+        console.log(result)
+        const logInUser:User = {
+        name: form.value.userName,
+        token: form.value.gameToken
+        }
+        this.badTokenError = false;
+        this.user.emit(logInUser);        
+      } else {
+        this.badTokenError = true;
+        setTimeout(() => {
+          this.badTokenError = false;
+        }, 3000)
+      }
+    })
   }
 
 }

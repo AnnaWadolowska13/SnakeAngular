@@ -13,7 +13,7 @@ export class GameInfoComponent{
   @Input() info: UserInfo = {
     user: {
       name: "",
-      email: ""
+      token: ""
     },
     gameStatus: "",
     score: 0,

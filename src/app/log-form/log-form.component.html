@@ -13,15 +13,21 @@
                 Incorrect name
             </p>
             <label for="email">
-                Enter your e-mail <br />
-                <input type="text" ngModel name="userEmail" #emailInput="ngModel" required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="ng-untouched ng-pristine ng-invalid">
+                Enter game token <br />
+                <input 
+                    type="text" 
+                    ngModel 
+                    name="gameToken" 
+                    #tokenInput="ngModel" 
+                    required
+                    class="ng-untouched ng-pristine ng-invalid"
+                >
             </label>
-            <p *ngIf="!emailInput.valid && emailInput.touched && emailInput.value != ''">
-                Incorrect e-mail
+            <p *ngIf="badTokenError">
+                Incorrect token, try again
             </p>
             <br />
-            <button [disabled]="!userForm.valid">Go to game</button>
+            <button [disabled]="!userForm.valid" class="logIn">Go to game</button>
         </form>
     </div>
 </div>
