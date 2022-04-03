@@ -12,7 +12,7 @@ import { NgxSnakeModule } from 'ngx-snake';
 import { IntroComponent } from './intro/intro.component';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { ControllerComponent } from './controller/controller.component';
-import { HighscoresComponent } from './highscores/highscores.component';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { HighscoresComponent } from './highscores/highscores.component';
     IntroComponent,
     GameInfoComponent,
     ControllerComponent,
-    HighscoresComponent
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,6 @@ import { HighscoresComponent } from './highscores/highscores.component';
     RouterModule.forRoot([
       { path: "Intro", component: IntroComponent },
       { path: "game", component: GameComponent },
-      { path: "highscores", component: HighscoresComponent },
       { path: "**", redirectTo: "Intro" },
       
     ]),

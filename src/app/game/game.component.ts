@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSnakeComponent } from 'ngx-snake';
+import { HighscoresService } from '../highscores.service';
 import { StorageService } from '../storage.service';
 
 export interface Move{
@@ -31,7 +32,10 @@ export class GameComponent implements OnInit {
   public movesTypes: Array<string> = ['right', 'left', 'up', 'down', 'score', 'game ended', 'game paused', 'game started'];
   public selectedType: string = "all";
   public sortType: string = "old";
+  public highscores: any = [];
   public displayMoves: boolean = false;
+  public displayHighScores: boolean = false;
+  
 
   public userInfo: UserInfo = {
     user: {
@@ -43,14 +47,16 @@ export class GameComponent implements OnInit {
     timer: 0
   }
 
-  constructor(private _storage: StorageService, private router: Router) {
+  constructor(private _storage: StorageService, private router: Router, private _highscores: HighscoresService) {
     if (this._storage.isUserLogin()) {
       this.userInfo.user = this._storage.readUser();
     } else {
       this.router.navigate(["intro"]);
     }
-
-    // console.log("data", this.data);
+    this._highscores.load().subscribe((result) => {
+      this.highscores = result;
+      console.log(this.highscores)
+    })
   }
   ngOnInit(): void {
 
@@ -186,10 +192,21 @@ export class GameComponent implements OnInit {
     clearInterval(this.timerInterval);
     this.userInfo.gameStatus = "end";
   }
-  public onClickDisplayMoves() {
+  public onClickDisplayMovesButton() {
+    this.onStopButtonPressed();
+    this.displayMovesChange();
+  }
+
+  public displayMovesChange() {
     this.displayMoves = !this.displayMoves;
   }
-  public onClickHighScore() {
-    this.router.navigate(["highscores"]);
+  public displayHighScoresChange() {
+    this.displayHighScores = !this.displayHighScores;
   }
+
+  public onClickHighScore() {
+    // this.router.navigate(["highscores"]);
+    this.displayHighScoresChange();
+  }
+
 }

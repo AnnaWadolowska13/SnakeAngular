@@ -12,35 +12,51 @@
         </div>
         <div class="col-3"> 
                 <app-controller (buttonClickType)="controllerClick($event)"></app-controller>
-                <button (click)="onClickHighScore()">Go to High Scores</button>
             <button (click)="onClickLogOut()" class="yellow">Log Out</button>
         </div>
     </div>
     <div>
-        <button *ngIf="!displayMoves" (click)="onClickDisplayMoves()"> Show list</button>
-        <button *ngIf="displayMoves" (click)="onClickDisplayMoves()"> Hide list</button>
+        <button (click)="onClickDisplayMovesButton()"> Show list</button>
+        <button class="buttonHighScores" (click)="onClickHighScore()">Go to High Scores</button>
     </div>
     <div class="moves" *ngIf="displayMoves">
-        <h1>Moves List</h1>
-        <div>
-            <span>Filters:</span>
-            <select [(ngModel)]="selectedType">
-                <option value="all">Show all</option>
-                <option *ngFor="let type of movesTypes" [value]="type"> {{type}}</option>
-            </select>
-            <select [(ngModel)]="sortType">
-                <option value="old">from the oldest</option>
-                <option value="young">from the youngest</option>
-    
-            </select>
+        <div class="modal">
+            <div class="modalContent">
+                <div class="filtersMoves">
+                    <h1>Moves List</h1>
+                    <span>Filters:</span>
+                    <select [(ngModel)]="selectedType">
+                        <option value="all">Show all</option>
+                        <option *ngFor="let type of movesTypes" [value]="type"> {{type}}</option>
+                    </select>
+                    <select [(ngModel)]="sortType">
+                        <option value="old">from the oldest</option>
+                        <option value="young">from the youngest</option>
+                    </select>
+                    <button *ngIf="displayMoves" (click)="displayMovesChange()"> X </button>
+                </div>
+                
+                <ul>
+                    <li *ngFor="let move of movesList | filter: selectedType:sortType: movesList.length">
+                        {{move.move}} - time: {{move.time}}
+                    </li>
+                </ul>                  
+            </div>
         </div>
-        <ul>
-            <li *ngFor="let move of movesList | filter: selectedType:sortType: movesList.length">
-                {{move.move}} - time: {{move.time}}
-            </li>
-        </ul>
     </div>
-
+    <div class="highscores" *ngIf="displayHighScores">
+        <div class="modal">
+            <div class="modalContent">
+                <div class="container">
+                    <h1>Highscore in Snake:</h1>
+                    <ol>
+                        <li *ngFor="let score of highscores | sort">{{score.name}} : {{ score.score}}</li>
+                    </ol>
+                    <button class="button" (click)="displayHighScoresChange()">X</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
