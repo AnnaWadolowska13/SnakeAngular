@@ -44,19 +44,6 @@
             </div>
         </div>
     </div>
-    <div class="highscores" *ngIf="displayHighScores">
-        <div class="modal">
-            <div class="modalContent">
-                <div class="container">
-                    <h2>Highscore in Snake:</h2>
-                    <ol>
-                        <li *ngFor="let score of highscores | sort">{{score.name}} : {{ score.score}}</li>
-                    </ol>
-                    <button class="button" (click)="displayHighScoresChange()">X</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 

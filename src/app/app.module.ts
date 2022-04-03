@@ -13,6 +13,7 @@ import { IntroComponent } from './intro/intro.component';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { ControllerComponent } from './controller/controller.component';
 import { SortPipe } from './sort.pipe';
+import { HighscoresComponent } from './highscores/highscores.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SortPipe } from './sort.pipe';
     IntroComponent,
     GameInfoComponent,
     ControllerComponent,
-    SortPipe
+    SortPipe,
+    HighscoresComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { SortPipe } from './sort.pipe';
     RouterModule.forRoot([
       { path: "Intro", component: IntroComponent },
       { path: "game", component: GameComponent },
+      { path: "highscores", component: HighscoresComponent },
       { path: "**", redirectTo: "Intro" },
       
     ]),

@@ -22,4 +22,17 @@ export class HighscoresService {
       },
     });
   }
+  addNewScore( name: string, score:number) {
+    const URL = "http://scores.chrum.it/scores";
+    const data = {
+      "name": name,
+      "game": "snake",
+      "score": score
+    }
+    const headers = {
+      "accept": "application/json",
+      "Content-Type": "application/json"
+    }
+    return this._http.post(URL, data, {headers} )
+  }
 }
