@@ -53,6 +53,10 @@ button {
   width: 60%;
   height: 60%;
   margin-top: 80px;
+  position: relative;
+  padding: 5px;
+}
+.moves .modalContent{
   overflow-y: scroll;
 }
 .modal button {
@@ -65,6 +69,10 @@ button {
   height: 30px;
   border-radius: 50%;
 }
+.modal h2{
+  margin-left:10px;
+}
+
 .filtersMoves {
   background-color: rgb(255, 240, 30);
   position: sticky;

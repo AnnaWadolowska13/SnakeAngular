@@ -178,12 +178,6 @@ export class GameComponent implements OnInit {
     this.userInfo.score = 0;
     this.userInfo.timer = 0;
   }
-
-  public onClickLogOut() {
-    this._storage.resetUser();
-    this.router.navigate(["logForm"]);
-
-  }
   public gameOver() {
     this.movesList.push({
       move: "game ended",
@@ -192,10 +186,21 @@ export class GameComponent implements OnInit {
     clearInterval(this.timerInterval);
     this.userInfo.gameStatus = "end";
   }
+
+  public onClickLogOut() {
+    this._storage.resetUser();
+    this.router.navigate(["logForm"]);
+  }
+
   public onClickDisplayMovesButton() {
     this.onStopButtonPressed();
     this.displayMovesChange();
   }
+    public onClickHighScore() {
+    this.onStopButtonPressed();
+    this.displayHighScoresChange();
+  }
+
 
   public displayMovesChange() {
     this.displayMoves = !this.displayMoves;
@@ -204,9 +209,5 @@ export class GameComponent implements OnInit {
     this.displayHighScores = !this.displayHighScores;
   }
 
-  public onClickHighScore() {
-    // this.router.navigate(["highscores"]);
-    this.displayHighScoresChange();
-  }
 
 }

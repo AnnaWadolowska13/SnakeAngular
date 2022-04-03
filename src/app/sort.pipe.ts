@@ -7,7 +7,8 @@ import { HighScore } from './highscores.service';
 export class SortPipe implements PipeTransform {
 
   transform(highscores: Array<HighScore>): Array<HighScore> {
-    return highscores.sort((a, b) => b.score - a.score)
-  }
+    let result = highscores.sort((a, b) => b.score - a.score);
+    return result.slice(0, 10);
+  } 
 
 }
