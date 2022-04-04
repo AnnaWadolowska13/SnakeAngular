@@ -22,12 +22,13 @@ export class HighscoresService {
       },
     });
   }
-  addNewScore( name: string, score:number) {
+  addNewScore( name: string, token: string, score:number) {
     const URL = "http://scores.chrum.it/scores";
     const data = {
       "name": name,
       "game": "snake",
-      "score": score
+      "score": score,
+      "auth-token": token
     }
     const headers = {
       "accept": "application/json",

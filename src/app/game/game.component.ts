@@ -12,7 +12,7 @@ export interface Move{
 export interface UserInfo{
     user: {
       name: string,
-      token:string
+      token: string 
     }
     gameStatus: string,
     score: number,
@@ -178,7 +178,7 @@ export class GameComponent implements OnInit {
     })
     clearInterval(this.timerInterval);
     this.userInfo.gameStatus = "end";
-    this._highscores.addNewScore(this.userInfo.user.name, this.userInfo.score).subscribe((result) => {
+    this._highscores.addNewScore(this.userInfo.user.name, this.userInfo.user.token, this.userInfo.score).subscribe((result) => {
       console.log(result);
     })
   }
