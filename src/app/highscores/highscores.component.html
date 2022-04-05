@@ -1,7 +1,16 @@
 <div class="container">
-    <h2>Highscore in Snake:</h2>
-    <ol>
-        <li *ngFor="let score of highscores | sort">{{score.name}} : {{ score.score}}</li>
-    </ol>
+    <div class="col">
+        <h2>Highscore in Snake:</h2>
+        <ol>
+            <li *ngFor="let score of highscores | sort">{{score.name}} : {{ score.score}}</li>
+        </ol>
+    </div>
+    <div class="col">
+        <h2>Yours in Snake:</h2>
+        <ol>
+            <li *ngFor="let score of (highscores | myScores : userName | sort)">{{score.name}} : {{ score.score}}</li>
+        </ol>
+    </div>
+
 </div>
-<button class="button" (click)="goBackToGame()">Go back to game</button>
+<button class="goBackButton" (click)="goBackToGame()">Go back to game</button>

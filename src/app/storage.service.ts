@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Move } from './game/game.component';
 import { User } from './log-form/log-form.component';
 
 @Injectable({
@@ -9,6 +10,7 @@ export class StorageService {
     name: "",
     token: "" 
   };
+  private movesList: Array<Move> = [];
 
   readUser() {
     return this.user;
@@ -24,5 +26,11 @@ export class StorageService {
   isUserLogin() {
     if (this.user.name !== "") return true;
     return false
+  }
+  setMovesList(movesList: Array<Move>) {
+    this.movesList = movesList;
+  }
+  readMovesList() {
+    return this.movesList;
   }
 }

@@ -2,15 +2,30 @@
   box-sizing: border-box;
   font-size: 20px;
 }
-.container_flex {
-  display: flex;
-  justify-content: center;
-}
 .col-3 {
   justify-content: center;
   text-align: center;
-  width: 33.3%;
+  width: 100%;
 }
+@media screen and (min-width: 700px) {
+  .container_flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .col-3{
+    margin-top:50px;
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .col-3 {
+    width: 33.3%;
+    margin-top:0;
+  }
+}
+
 .hello {
   font-size: 2.5em;
   text-align: center;
@@ -23,6 +38,7 @@ button {
   border-radius: 55%;
   width: 100px;
   height: 50px;
+  margin: 5px;
 }
 .yellow {
   background-color: rgb(241, 241, 30);
@@ -36,41 +52,6 @@ button {
 }
 .buttonHighScores {
   width: fit-content;
-}
-.modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 5;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.modal .modalContent {
-  margin: 0 auto;
-  background-color: rgb(255, 240, 30);
-  border-radius: 2px;
-  width: 60%;
-  height: 60%;
-  margin-top: 80px;
-  position: relative;
-  padding: 5px;
-}
-.moves .modalContent{
-  overflow-y: scroll;
-}
-.modal button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 5px;
-  margin-right: 5px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-.modal h2{
-  margin-left:10px;
 }
 
 .filtersMoves {

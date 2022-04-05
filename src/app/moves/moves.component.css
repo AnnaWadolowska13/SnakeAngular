@@ -1,13 +1,8 @@
-.container{
-    display:flex;
-    margin: 0 auto;
-    max-width: 1200px;
-    font-size: 20px;
+.container {
+    text-align: center;
 }
-.col{
-    width: 50%;
-}
-.goBackButton{
+
+.goBackButton {
     margin: 0 auto;
     display: block;
     background-color: rgb(241, 241, 30);

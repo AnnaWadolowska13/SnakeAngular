@@ -14,6 +14,8 @@ import { GameInfoComponent } from './game-info/game-info.component';
 import { ControllerComponent } from './controller/controller.component';
 import { SortPipe } from './sort.pipe';
 import { HighscoresComponent } from './highscores/highscores.component';
+import { MyScoresPipe } from './my-scores.pipe';
+import { MovesComponent } from './moves/moves.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HighscoresComponent } from './highscores/highscores.component';
     GameInfoComponent,
     ControllerComponent,
     SortPipe,
-    HighscoresComponent
+    HighscoresComponent,
+    MyScoresPipe,
+    MovesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { HighscoresComponent } from './highscores/highscores.component';
       { path: "Intro", component: IntroComponent },
       { path: "game", component: GameComponent },
       { path: "highscores", component: HighscoresComponent },
+      { path: "moves", component: MovesComponent },
       { path: "**", redirectTo: "Intro" },
       
     ]),

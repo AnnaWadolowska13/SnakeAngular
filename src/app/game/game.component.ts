@@ -29,9 +29,6 @@ export class GameComponent implements OnInit {
   @ViewChild(NgxSnakeComponent) public _snake!: NgxSnakeComponent;
   public timerInterval!: any;
   public movesList: Array<Move> = [];
-  public movesTypes: Array<string> = ['right', 'left', 'up', 'down', 'score', 'game ended', 'game paused', 'game started'];
-  public selectedType: string = "all";
-  public sortType: string = "old";
   public displayMoves: boolean = false;
 
   public userInfo: UserInfo = {
@@ -106,6 +103,7 @@ export class GameComponent implements OnInit {
       time: this.userInfo.timer,
     })
   }
+
   public onStartButtonPressed() {
     if (this.userInfo.gameStatus !== "paused") {
       this.onResetButtonPressed();
@@ -120,6 +118,7 @@ export class GameComponent implements OnInit {
     })
     this._snake.actionStart();
   }
+
   public onStopButtonPressed() {
     if (this.userInfo.gameStatus === "started") {
       clearInterval(this.timerInterval);
@@ -130,8 +129,8 @@ export class GameComponent implements OnInit {
         time: this.userInfo.timer,
       })
     }
-
   }
+
   public onResetButtonPressed() {
     clearInterval(this.timerInterval);
     this.movesList = [];
@@ -146,6 +145,7 @@ export class GameComponent implements OnInit {
     })
     this._snake.actionLeft();
   }
+
   public onUpButtonPressed() {
     this.movesList.push({
       move: "up",
@@ -153,6 +153,7 @@ export class GameComponent implements OnInit {
     })
     this._snake.actionUp();
   }
+
   public onRightButtonPressed() {
     this.movesList.push({
       move: "right",
@@ -160,6 +161,7 @@ export class GameComponent implements OnInit {
     })
     this._snake.actionRight();
   }
+
   public onDownButtonPressed() {
     this.movesList.push({
       move: "down",
@@ -167,10 +169,12 @@ export class GameComponent implements OnInit {
     })
     this._snake.actionDown();
   }
+
   private resetCounters() {
     this.userInfo.score = 0;
     this.userInfo.timer = 0;
   }
+
   public gameOver() {
     this.movesList.push({
       move: "game ended",
@@ -190,7 +194,8 @@ export class GameComponent implements OnInit {
 
   public onClickDisplayMovesButton() {
     this.onStopButtonPressed();
-    this.displayMovesChange();
+    this._storage.setMovesList(this.movesList);
+    this._router.navigate(["moves"]);
   }
   public onClickHighScore() {
     this.onStopButtonPressed();

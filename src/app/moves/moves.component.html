@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="filtersMoves">
+        <h1>Moves List</h1>
+        <span>Filters:</span>
+        <select [(ngModel)]="selectedType">
+            <option value="all">Show all</option>
+            <option *ngFor="let type of movesTypes" [value]="type"> {{type}}</option>
+        </select>
+        <select [(ngModel)]="sortType">
+            <option value="old">from the oldest</option>
+            <option value="young">from the youngest</option>
+        </select>
+    </div>
+
+    <ul>
+        <li *ngFor="let move of movesList | filter: selectedType:sortType: movesList.length">
+            {{move.move}} - time: {{move.time}}
+        </li>
+    </ul>
+</div>
+<button class="goBackButton" (click)="goBackToGame()">Go back to game</button>

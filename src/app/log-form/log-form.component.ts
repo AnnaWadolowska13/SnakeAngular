@@ -26,8 +26,8 @@ export class LogFormComponent{
       if (result.success) {
         console.log(result)
         const logInUser:User = {
-        name: form.value.userName,
-        token: form.value.gameToken.toString(),
+          name: form.value.userName,
+          token: form.value.gameToken.toString(),
         }
         this.badTokenError = false;
         this.user.emit(logInUser);        
