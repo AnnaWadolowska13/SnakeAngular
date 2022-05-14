@@ -1,5 +1,5 @@
 
-<div class="container bg-violet">
+<div class="container bg-violet" [ngClass]="this.color">
     <div class="hello">
         Welcome in Snake 
     </div>
@@ -12,12 +12,12 @@
         </div>
         <div class="col-3"> 
                 <app-controller (buttonClickType)="controllerClick($event)"></app-controller>
-            <button (click)="onClickLogOut()" class="yellow">Log Out</button>
+            <button (click)="onClickLogOut()">Log Out</button>
         </div>
     </div>
     <div>
-        <button class="buttonHighScores yellow" (click)="onClickDisplayMovesButton()">Moves list</button>
-        <button class="buttonHighScores yellow" (click)="onClickHighScore()">High Scores</button>
+        <button class="buttonHighScores" (click)="onClickDisplayMovesButton()">Moves list</button>
+        <button class="buttonHighScores" (click)="onClickHighScore()">High Scores</button>
     </div>
 </div>
 

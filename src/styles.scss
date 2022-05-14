@@ -2,8 +2,15 @@
 body {
   background-color: rgb(42, 90, 42);
 }
+button{
+  background-color: rgb(241, 241, 30);
+}
+button {
+  &.high-contrast {
+    background-color: #ffffff;
+  }
+}
 ngx-snake {
-  &.normal {
       ngx-snake-tile {
         background: #088322;
 
@@ -25,7 +32,6 @@ ngx-snake {
             background: #f5f10e;
           }
         }
-      }
     }
   &.high-contrast {
     ngx-snake-tile {
@@ -47,4 +53,12 @@ ngx-snake {
       }
     }
   }
+}
+.goBackButton {
+  margin: 0 auto;
+  display: block;
+  border-radius: 55%;
+  width: 100px;
+  height: 50px;
+  margin-top: 150px
 }

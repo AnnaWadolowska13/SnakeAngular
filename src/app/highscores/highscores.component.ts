@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HighScore, HighscoresService } from '../highscores.service';
@@ -12,7 +13,7 @@ export class HighscoresComponent implements OnInit {
   public highscores: Array<HighScore> = [];
   public userName: string = "";
 
-  constructor(private _router: Router, private _highscores:HighscoresService, private _storage: StorageService,) { 
+  constructor(private _location: Location, private _highscores:HighscoresService, private _storage: StorageService,) { 
     this._highscores.load().subscribe((result: any) => {
       this.highscores = result;
     })
@@ -23,6 +24,6 @@ export class HighscoresComponent implements OnInit {
   ngOnInit(): void {
   }
   public goBackToGame() {
-    this._router.navigate(['game'])
+    this._location.back();
   }
 }

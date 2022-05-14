@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Move } from '../game/game.component';
@@ -13,13 +14,13 @@ export class MovesComponent implements OnInit {
   public sortType: string = "old";
   public movesList: Array<Move> = [];
   public movesTypes: Array<string> = ['right', 'left', 'up', 'down', 'score', 'game ended', 'game paused', 'game started'];
-  constructor(private _storage: StorageService, private _router:Router) {
+  constructor(private _storage: StorageService,private _location: Location) {
     this.movesList = _storage.readMovesList();
   }
 
   ngOnInit(): void {
   }
   public goBackToGame() {
-    this._router.navigate(['game'])
+    this._location.back();
   }
 }
