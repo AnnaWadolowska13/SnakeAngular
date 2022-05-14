@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenVerifyService } from '../token-verify.service';
 
 
@@ -23,17 +23,28 @@ interface Result{
 })
 export class LogFormComponent{
   public badTokenError = false;
-  constructor(private _tokenVerify: TokenVerifyService) {
+  public get name() { return this.logForm.get('name') };
+  public get token() { return this.logForm.get('token') };
+  public get color() { return this.logForm.get('color') };
+  constructor(private _tokenVerify: TokenVerifyService, private _fb: FormBuilder) {
   }
+  public logForm = this._fb.group({
+    name: [null, [
+      Validators.required,
+      Validators.minLength(3)
+    ]],
+  token: [null, [Validators.required]],
+  color: ["normal", [Validators.required]]
+  });
+  
   @Output() public user = new EventEmitter<UserSettings>();
-  public onClickLogIn(form: FormGroup): void{
-    this._tokenVerify.checkToken(form.value.gameToken).subscribe((result:any) => {
+  public onClickLogIn(): void{
+    this._tokenVerify.checkToken(this.logForm.value.token).subscribe((result:any) => {
       if (result.success) {
-        // console.log(result)
         const logInUser:UserSettings = {
-          name: form.value.userName,
-          token: form.value.gameToken.toString(),
-          color: form.value.color
+          name: this.logForm.value.name,
+          token: this.logForm.value.token.toString(),
+          color: this.logForm.value.color
         }
         this.badTokenError = false;
         this.user.emit(logInUser);        

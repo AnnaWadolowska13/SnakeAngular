@@ -3,23 +3,21 @@
         <h1>Let's play snake! </h1>
     </div>
     <div class="box">
-        <form #userForm="ngForm" (submit)="onClickLogIn(userForm.form)">
+        <form [formGroup]="logForm" (submit)="onClickLogIn()">
             <label for="name">
                 Enter your name <br />
-                <input type="text" ngModel name="userName" #nameInput="ngModel" required minlength="3"
+                <input type="text" name="userName" formControlName="name" minlength="3"
                     class="ng-invalid">
             </label> <br />
-            <p *ngIf="!nameInput.valid && nameInput.touched && nameInput.value != ''">
+            <p *ngIf="!name?.valid && name?.touched && name?.value != ''">
                 Incorrect name
             </p>
             <label for="email">
                 Enter game token <br />
                 <input 
                     type="text" 
-                    ngModel 
                     name="gameToken" 
-                    #tokenInput="ngModel" 
-                    required
+                    formControlName="token"
                     class="ng-untouched ng-pristine ng-invalid"
                 >
             </label>
@@ -30,15 +28,15 @@
             <label for="">
                 Choose color theme<br />
                 <select
-                    ngModel
-                    required
+                    formControlName="color"
                     name="color"
                 >
                     <option value="normal">Normal</option>
                     <option value="high-contrast">High Contrast</option>
                 </select>
             </label>
-            <button [disabled]="!userForm.valid" class="logIn">Go to game</button>
+            <!-- <button [disabled]="!userForm.valid" class="logIn">Go to game</button> -->
+            <button [disabled]="!logForm.valid" class="logIn">Go to game</button>
         </form>
     </div>
 </div>
