@@ -38,6 +38,7 @@ import { MovesComponent } from './moves/moves.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: "Intro", component: IntroComponent },
+      { path: "game/:color", component: GameComponent },
       { path: "game", component: GameComponent },
       { path: "highscores", component: HighscoresComponent },
       { path: "moves", component: MovesComponent },

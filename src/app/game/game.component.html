@@ -8,7 +8,7 @@
             <app-game-info [info]='userInfo'></app-game-info>
         </div>
         <div class="col-3">
-            <ngx-snake #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>
+            <ngx-snake class="black-and-white" #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>
         </div>
         <div class="col-3"> 
                 <app-controller (buttonClickType)="controllerClick($event)"></app-controller>
@@ -16,8 +16,8 @@
         </div>
     </div>
     <div>
-        <button class="yellow" (click)="onClickDisplayMovesButton()"> Show list</button>
-        <button class="buttonHighScores yellow" (click)="onClickHighScore()">Go to High Scores</button>
+        <button class="buttonHighScores yellow" (click)="onClickDisplayMovesButton()">Moves list</button>
+        <button class="buttonHighScores yellow" (click)="onClickHighScore()">High Scores</button>
     </div>
 </div>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../log-form/log-form.component';
+import { User, UserSettings } from '../log-form/log-form.component';
 import { StorageService } from '../storage.service';
 
 @Component({
@@ -15,10 +15,13 @@ export class IntroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onLogIn(user: User):void {
-    console.log(user);
-    this.storage.setUser(user);
-    this.router.navigate(["game"]);
+  public onLogIn(user: UserSettings):void {
+    let userLogIn:User = {
+      name: user.name,
+      token: user.token
+    }
+    this.storage.setUser(userLogIn);
+    this.router.navigate(["game", user.color]);
   }
 
 }

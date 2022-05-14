@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: rgb(42, 90, 42);
+}
+ngx-snake {
+  &.black-and-white {
+    ngx-snake-tile {
+      background: #ffffff;
+
+      &.free {
+        div {
+          background: #ffffff;
+        }
+      }
+
+      &.head,
+      &.tail,
+      &.food,
+      &.body {
+        div {
+          background: #000000;
+        }
+      }
+    }
+  }
+}

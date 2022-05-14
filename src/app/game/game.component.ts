@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSnakeComponent } from 'ngx-snake';
 import { HighscoresService } from '../highscores.service';
 import { StorageService } from '../storage.service';
@@ -22,7 +22,7 @@ export interface UserInfo{
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  styleUrls: ['./game.component.scss']
 })
   
 export class GameComponent implements OnInit {
@@ -30,6 +30,7 @@ export class GameComponent implements OnInit {
   public timerInterval!: any;
   public movesList: Array<Move> = [];
   public displayMoves: boolean = false;
+  public color: string = "";
 
   public userInfo: UserInfo = {
     user: {
@@ -41,7 +42,10 @@ export class GameComponent implements OnInit {
     timer: 0
   }
 
-  constructor(private _storage: StorageService, private _router: Router, private _highscores: HighscoresService) {
+  constructor(private _storage: StorageService, private _router: Router, private _highscores: HighscoresService, private _route: ActivatedRoute) {
+    this._route.params.subscribe((params) => {
+      this.color = params['color'];
+    })
     if (this._storage.isUserLogin()) {
       this.userInfo.user = this._storage.readUser();
     } else {
@@ -201,9 +205,4 @@ export class GameComponent implements OnInit {
     this.onStopButtonPressed();
     this._router.navigate(["highscores"]);
   }
-
-  public displayMovesChange() {
-    this.displayMoves = !this.displayMoves;
-  }
-
 }
