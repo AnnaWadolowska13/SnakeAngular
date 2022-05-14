@@ -27,6 +27,17 @@
                 Incorrect token, try again
             </p>
             <br />
+            <label for="">
+                Choose color theme<br />
+                <select
+                    ngModel
+                    required
+                    name="color"
+                >
+                    <option value="normal">Normal</option>
+                    <option value="high-contrast">High Contrast</option>
+                </select>
+            </label>
             <button [disabled]="!userForm.valid" class="logIn">Go to game</button>
         </form>
     </div>

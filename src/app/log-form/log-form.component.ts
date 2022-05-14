@@ -8,6 +8,11 @@ export interface User{
   name: string,
   token: string
 }
+export interface UserSettings{
+  name: string,
+  token: string,
+  color:string
+}
 interface Result{
   success: boolean
 }
@@ -20,14 +25,15 @@ export class LogFormComponent{
   public badTokenError = false;
   constructor(private _tokenVerify: TokenVerifyService) {
   }
-  @Output() public user = new EventEmitter<User>();
+  @Output() public user = new EventEmitter<UserSettings>();
   public onClickLogIn(form: FormGroup): void{
     this._tokenVerify.checkToken(form.value.gameToken).subscribe((result:any) => {
       if (result.success) {
         console.log(result)
-        const logInUser:User = {
+        const logInUser:UserSettings = {
           name: form.value.userName,
           token: form.value.gameToken.toString(),
+          color: form.value.color
         }
         this.badTokenError = false;
         this.user.emit(logInUser);        
