@@ -3,7 +3,31 @@ body {
   background-color: rgb(42, 90, 42);
 }
 ngx-snake {
-  &.black-and-white {
+  &.normal {
+      ngx-snake-tile {
+        background: #088322;
+
+        &.free {
+          div {
+            background: rgb(143, 231, 143);
+          }
+        }
+
+        &.food {
+          div{
+            background: #088322;
+          }
+        }
+        &.head,
+        &.tail,
+        &.body {
+          div {
+            background: #f5f10e;
+          }
+        }
+      }
+    }
+  &.high-contrast {
     ngx-snake-tile {
       background: #ffffff;
 

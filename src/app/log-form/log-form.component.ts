@@ -29,7 +29,7 @@ export class LogFormComponent{
   public onClickLogIn(form: FormGroup): void{
     this._tokenVerify.checkToken(form.value.gameToken).subscribe((result:any) => {
       if (result.success) {
-        console.log(result)
+        // console.log(result)
         const logInUser:UserSettings = {
           name: form.value.userName,
           token: form.value.gameToken.toString(),

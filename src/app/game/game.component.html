@@ -8,7 +8,7 @@
             <app-game-info [info]='userInfo'></app-game-info>
         </div>
         <div class="col-3">
-            <ngx-snake class="black-and-white" #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>
+            <ngx-snake [ngClass]="this.color" #game (foodEaten)="foodEaten()" (gameOver)="gameOver()"></ngx-snake>
         </div>
         <div class="col-3"> 
                 <app-controller (buttonClickType)="controllerClick($event)"></app-controller>
