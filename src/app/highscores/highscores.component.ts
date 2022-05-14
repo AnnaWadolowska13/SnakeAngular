@@ -15,7 +15,6 @@ export class HighscoresComponent implements OnInit {
   constructor(private _router: Router, private _highscores:HighscoresService, private _storage: StorageService,) { 
     this._highscores.load().subscribe((result: any) => {
       this.highscores = result;
-      console.log(this.highscores)
     })
     this.userName = _storage.readUser().name;
 
